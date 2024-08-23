@@ -3,6 +3,8 @@ BACKEND_DC_FILE = docker_compose/backend.yaml
 DB_CONTAINER = "project-db"
 BACKEND_CONTAINER = "backend-app"
 
+# DATABASE
+# ________________________________
 .PHONY: db
 db:
 	docker compose -f ${DB_DC_FILE} up -d
@@ -19,6 +21,8 @@ db-logs:
 db-conn:
 	docker exec -it ${DB_CONTAINER} psql -U myuser
 
+# BACKEND APP
+# ________________________________
 .PHONY: backend-image
 backend-image:
 	docker build -t backend_app .
