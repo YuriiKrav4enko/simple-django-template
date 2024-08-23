@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  backend-app:
+    # build:
+    #   context: ..
+    #   dockerfile: Dockerfile
+    container_name: backend-app
+    image: backend_app
+    ports:
+      - 8000:8000
+    # command: wait-for-it db:5432 -- /bin/sh -c "./manage.py collectstatic --no-input && ./manage.py migrate && uwsgi --master --http :8000 --module core.project.wsgi"
+    command: wait-for-it db:5432 -- /bin/sh -c "./manage.py collectstatic --no-input && uwsgi --master --http :8000 --module core.project.wsgi"
+    environment:
+      - DATABASE_URL=postgres://myuser:password@db:5432/dprjdb
+      - DEBUG=on
+    links:
+      - db
+    volumes:
+      - ..:/app/
