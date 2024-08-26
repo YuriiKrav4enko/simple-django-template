@@ -4,5 +4,5 @@ from .models import Product
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'created', 'modified')
+    list_display = ('id', 'title', 'created', 'modified', 'is_visiable')
     exclude = ["is_removed"]
