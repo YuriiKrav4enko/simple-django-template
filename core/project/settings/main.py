@@ -1,8 +1,10 @@
-import environ
 from pathlib import Path
 
+import environ
+
+
 env = environ.Env(
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,14 +34,14 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-] 
+]
 
 THIRD_PARTY_APPS = [
 
 ]
 
 FIRST_PARTY_APPS = [
-    'core.apps.products'
+    'core.apps.products',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + FIRST_PARTY_APPS

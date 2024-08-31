@@ -1,11 +1,12 @@
 from datetime import datetime
+
 from ninja import Schema
 
 from core.apps.products.entities.products import Product as ProductEntity
 
 
 class ProductSchema(Schema):
-    id: int
+    id: int  # noqa
     title: str
     description: str
     created: datetime
@@ -19,5 +20,5 @@ class ProductSchema(Schema):
             title=entity.title,
             description=entity.description,
             created=entity.created,
-            modified=entity.modified
+            modified=entity.modified,
         )

@@ -1,17 +1,23 @@
-from abc import ABC, abstractmethod
+from abc import (
+    ABC,
+    abstractmethod,
+)
 from typing import Iterable
 
-from django.db.models import Q 
+from django.db.models import Q
 
 from core.api.filters import PaginationIn
 from core.api.v1.products.filters import ProductFilters
-from core.apps.products.models.products import Product as ProductModel  #DTO
 from core.apps.products.entities.products import Product
+from core.apps.products.models.products import Product as ProductModel  # DTO
 
 
 # Protocol vs ABC ???
 class BaseProductService(ABC):  # or IProductService
-    def get_product_list(self, filters: ProductFilters, pagination: PaginationIn) -> Iterable[Product]:  # vs code lint don't work
+    # vs code lint don't work
+    def get_product_list(
+        self, filters: ProductFilters, pagination: PaginationIn,
+    ) -> Iterable[Product]:
         raise NotImplementedError
 
     @abstractmethod
@@ -32,7 +38,7 @@ class ORMProductService(BaseProductService):
         query = self.__build_product_query(filters=filters)
         qs = ProductModel.objects.filter(query)[pagination.offset:pagination.offset+pagination.limit]
         return [product.to_entity() for product in qs]
-    
+
     def get_product_count(self, filters: ProductFilters) -> int:
         query = self.__build_product_query(filters=filters)
         qs = ProductModel.objects.filter(query)
