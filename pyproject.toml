@@ -19,10 +19,18 @@ psycopg2-binary = "^2.9.9"
 [tool.poetry.group.dev.dependencies]
 isort = "^5.13.2"
 pre-commit = "^3.8.0"
+faker = "^28.1.0"
+pytest = "^8.3.2"
+pytest-django = "^4.8.0"
+factory-boy = "^3.3.1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "core.project.settings.main"
+# python_files = ["test_*.py", "*_test.py", "testing/python/*.py"]
 
 [tool.isort]
 multi_line_output=3

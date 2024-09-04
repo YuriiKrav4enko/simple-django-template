@@ -32,7 +32,7 @@ class Product(TimeStampedModel, SoftDeletableModel):
     def to_entity(self) -> ProductEntity:
         # Better to have separate converter
         return ProductEntity(
-            id=self.id,
+            id=self.id,  # type: ignore
             title=self.title,
             description=self.description,
             created=self.created,

@@ -46,3 +46,8 @@ migrate:
 .PHONY: superuser
 superuser:
 	docker exec -it ${BACKEND_CONTAINER} ./manage.py createsuperuser
+
+# Tests
+.PHONY: run-test
+run-test:
+	docker exec -it ${BACKEND_CONTAINER} pytest
